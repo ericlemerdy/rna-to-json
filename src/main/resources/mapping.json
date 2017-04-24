@@ -1,0 +1,214 @@
+{
+  "mappings": {
+    "association": {
+      "properties": {
+        "codeGestionnaire": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "ancienNumero": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "siret": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "codePrefectureOuSousPrefectureDuBureauGestionnaire": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "dateDeCreation": {
+          "type": "date"
+        },
+        "dateDePublication": {
+          "type": "date"
+        },
+        "nature": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "groupement": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "titre": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "objet": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "objetSocialWaldec1": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "objetSocialWaldec2": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "adresseLigne1": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "adresseLigne2": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "adresseLigne3": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "codePostal": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "commune": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "codeInsee": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "siteWeb": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "observation": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "position": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "numeroRUPMinistere": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "dateDeMiseAJour": {
+          "type": "date"
+        }
+      }
+    }
+  },
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "my_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase"
+          ],
+          "char_filter": []
+        }
+      },
+      "filter": {},
+      "tokenizer": {},
+      "char_filter": {}
+    }
+  }
+}
