@@ -1,14 +1,15 @@
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
 import static com.fasterxml.jackson.annotation.JsonFormat.Shape.NUMBER;
 
 @Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @JsonPropertyOrder({
         "codeGestionnaire",
         "ancienNumero",
@@ -34,7 +35,8 @@ import static com.fasterxml.jackson.annotation.JsonFormat.Shape.NUMBER;
         "numeroRUPMinistere",
         "dateDeMiseAJour"
 })
-class Association {
+public class Association {
+
     /**
      * code gestionnaire  + Id_ex = Numéro de l’association
      */

@@ -1,6 +1,8 @@
+import com.google.common.annotations.VisibleForTesting;
 import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
+import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
@@ -14,17 +16,33 @@ import static org.elasticsearch.client.Requests.indicesExistsRequest;
 import static org.elasticsearch.common.settings.Settings.EMPTY;
 import static org.elasticsearch.common.xcontent.XContentType.JSON;
 
-public class CreateIndex {
+public class AssociationsIndex {
+
+    private Client client;
+
+    public AssociationsIndex(Client client) {
+        this.client = client;
+    }
+
+    @VisibleForTesting
+    void createIndex() throws IOException {
+        deleteIndexIfExists();
+        CreateIndexRequestBuilder rna = client.admin().indices().prepareCreate("rna");
+        rna.setSource(toByteArray(AssociationsIndex.class.getResourceAsStream("mapping.json")), JSON).get();
+    }
+
+    @VisibleForTesting
+    void deleteIndexIfExists() {
+        ActionFuture<IndicesExistsResponse> exists = client.admin().indices().exists(indicesExistsRequest("rna"));
+        if (exists.actionGet().isExists()) {
+            client.admin().indices().prepareDelete("rna").get();
+        }
+    }
 
     public static void main(String[] args) throws URISyntaxException, IOException {
         try (TransportClient client = new PreBuiltTransportClient(EMPTY)
                 .addTransportAddress(new InetSocketTransportAddress(getLocalHost(), 9300))) {
-            ActionFuture<IndicesExistsResponse> exists = client.admin().indices().exists(indicesExistsRequest("rna"));
-            if (exists.actionGet().isExists()) {
-                client.admin().indices().prepareDelete("rna").get();
-            }
-            CreateIndexRequestBuilder rna = client.admin().indices().prepareCreate("rna");
-            rna.setSource(toByteArray(CreateIndex.class.getResourceAsStream("mapping.json")), JSON).get();
+            new AssociationsIndex(client).createIndex();
         }
     }
 

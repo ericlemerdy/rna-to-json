@@ -9,28 +9,30 @@ import com.google.common.annotations.VisibleForTesting;
 import java.io.*;
 import java.net.URISyntaxException;
 
+import static com.fasterxml.jackson.databind.MapperFeature.CAN_OVERRIDE_ACCESS_MODIFIERS;
 import static java.lang.String.format;
 import static java.lang.System.out;
 import static java.nio.charset.Charset.forName;
 
-class RNAToJson {
+public class RNAToJson {
     private static final char SEPARATOR_CHAR = ';';
-    public static final int BUFFER_SIZE = 10000;
+    private static final int BUFFER_SIZE = 10000;
     private CsvMapper csvMapper;
     private CsvSchema csvSchema;
 
-    RNAToJson() {
-        csvMapper = new CsvMapper();
+    public RNAToJson() {
+        csvMapper = (CsvMapper) new CsvMapper().disable(CAN_OVERRIDE_ACCESS_MODIFIERS);
         csvSchema = csvMapper
                 .schemaFor(Association.class)
                 .withColumnSeparator(SEPARATOR_CHAR);
     }
 
-    void convertToJson(Writer writer, InputStream source) throws IOException, URISyntaxException {
+    public void convertToJson(Writer writer, InputStream source) throws IOException, URISyntaxException {
         MappingIterator<Association> datas = createObjectReader(csvSchema.withHeader())
                 .readValues(new InputStreamReader(source, forName("latin1")));
         int i = 0, j = 0;
         try (SequenceWriter sequenceWriter = new ObjectMapper()
+                .disable(CAN_OVERRIDE_ACCESS_MODIFIERS)
                 .writer()
                 .writeValues(writer)
                 .init(false)) {

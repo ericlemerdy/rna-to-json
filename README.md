@@ -21,7 +21,7 @@ $ docker run \
 
 4. Create schema
 
-$ java -jar target/rna-to-json-1.0-SNAPSHOT.jar CreateIndex
+$ java -jar target/rna-to-json-1.0-SNAPSHOT.jar AssociationsIndex
 
 3. Convert documents from CSV to JSON
 
