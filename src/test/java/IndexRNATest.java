@@ -1,20 +1,29 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import data.Association;
-import org.elasticsearch.test.ESIntegTestCase;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Test;
+import pl.domzal.junit.docker.rule.DockerRule;
 
+import java.io.IOException;
+
+import static com.fasterxml.jackson.databind.MapperFeature.CAN_OVERRIDE_ACCESS_MODIFIERS;
+import static java.net.InetAddress.getLocalHost;
 import static org.elasticsearch.common.xcontent.XContentType.JSON;
 
-public class IndexRNATest extends ESIntegTestCase {
+public class IndexRNATest {
+
+    private AssociationsIndex associationsIndex;
+
+    @ClassRule
+    public static DockerRule elasticsearch = ElasticsearchRule.ELASTICSEARCH;
 
     @Before
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-        new AssociationsIndex(client()).createIndex();
+    public void setUp() throws IOException {
+        associationsIndex = new AssociationsIndex(getLocalHost());
+        associationsIndex.createIndex();
     }
 
     @Test
@@ -24,14 +33,14 @@ public class IndexRNATest extends ESIntegTestCase {
                 .objet("Hello World !")
                 .build();
 
-        client().prepareIndex("rna", "associations", "ABC")
-                .setSource(new ObjectMapper().writeValueAsBytes(association), JSON);
+        associationsIndex.getClient().prepareIndex("rna", "associations", "ABC")
+                .setSource(new ObjectMapper()
+                        .disable(CAN_OVERRIDE_ACCESS_MODIFIERS)
+                        .writeValueAsBytes(association), JSON);
     }
 
-    @Override
     @After
     public void tearDown() throws Exception {
-        new AssociationsIndex(client()).deleteIndexIfExists();
-        super.tearDown();
+        associationsIndex.deleteIndexIfExists();
     }
 }

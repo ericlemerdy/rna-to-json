@@ -3,12 +3,12 @@ import org.elasticsearch.action.ActionFuture;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
 import org.elasticsearch.client.Client;
-import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import static com.google.common.io.ByteStreams.toByteArray;
 import static java.net.InetAddress.getLocalHost;
@@ -16,12 +16,17 @@ import static org.elasticsearch.client.Requests.indicesExistsRequest;
 import static org.elasticsearch.common.settings.Settings.EMPTY;
 import static org.elasticsearch.common.xcontent.XContentType.JSON;
 
-public class AssociationsIndex {
+public class AssociationsIndex implements AutoCloseable {
 
     private Client client;
 
     public AssociationsIndex(Client client) {
         this.client = client;
+    }
+
+    public AssociationsIndex(InetAddress inetAddress) throws UnknownHostException {
+        this.client = new PreBuiltTransportClient(EMPTY)
+                .addTransportAddress(new InetSocketTransportAddress(inetAddress, 9300));
     }
 
     @VisibleForTesting
@@ -39,11 +44,19 @@ public class AssociationsIndex {
         }
     }
 
-    public static void main(String[] args) throws URISyntaxException, IOException {
-        try (TransportClient client = new PreBuiltTransportClient(EMPTY)
-                .addTransportAddress(new InetSocketTransportAddress(getLocalHost(), 9300))) {
-            new AssociationsIndex(client).createIndex();
+    @VisibleForTesting
+    Client getClient() {
+        return client;
+    }
+
+    public static void main(String[] args) throws IOException {
+        try (AssociationsIndex associationsIndex = new AssociationsIndex(getLocalHost())) {
+            associationsIndex.createIndex();
         }
     }
 
+    @Override
+    public void close() {
+        this.client.close();
+    }
 }

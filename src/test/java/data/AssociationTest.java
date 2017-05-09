@@ -1,6 +1,7 @@
 package data;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.cfg.MapperConfig;
 import org.junit.Test;
@@ -14,7 +15,9 @@ public class AssociationTest {
     public void should_map_to_json() throws JsonProcessingException {
         Association association = Association.builder().codeGestionnaire("ABC").build();
 
-        String associationAsJson = new ObjectMapper().writeValueAsString(association);
+        String associationAsJson = new ObjectMapper()
+                .disable(MapperFeature.CAN_OVERRIDE_ACCESS_MODIFIERS)
+                .writeValueAsString(association);
 
         assertThatJson(associationAsJson).node("codeGestionnaire").isEqualTo("ABC");
     }
