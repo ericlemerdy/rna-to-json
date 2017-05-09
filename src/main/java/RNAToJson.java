@@ -14,6 +14,10 @@ import static java.lang.String.format;
 import static java.lang.System.out;
 import static java.nio.charset.Charset.forName;
 
+import data.Association;
+import data.Id;
+import data.Index;
+
 public class RNAToJson {
     private static final char SEPARATOR_CHAR = ';';
     private static final int BUFFER_SIZE = 10000;

@@ -1,3 +1,4 @@
+import data.Association;
 import org.junit.Test;
 
 import java.io.IOException;

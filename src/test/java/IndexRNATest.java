@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import data.Association;
 import org.elasticsearch.test.ESIntegTestCase;
 import org.junit.After;
 import org.junit.Before;
