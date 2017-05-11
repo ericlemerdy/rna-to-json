@@ -21,11 +21,15 @@ $ docker run \
 
 4. Create schema
 
+```bash
 $ java -jar target/rna-to-json-1.0-SNAPSHOT.jar AssociationsIndex
+```
 
-3. Convert documents from CSV to JSON
+3. Index documents from CSV
 
+```bash
 $ java -jar target/rna-to-json-1.0-SNAPSHOT.jar RNAIndexer
+```
 
 At the end, it will print the output file.
 
