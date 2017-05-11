@@ -5,18 +5,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RNAToJsonTest {
+public class RNAIndexerTest {
 
     @Test
     public void should_read_one_import_association() throws IOException {
         Calendar calendar = Calendar.getInstance();
 
-        Association a = new RNAToJson().serializeOneLine("" +
+        Association a = new RNAIndexer().serializeOneLine("" +
                 "751P00085568;00085568;\"\";751P;1988-04-15;0001-01-01;D;S;INDIGO;dvpt et démocratisation de la musique;006030;000000;\"\";10        BD  Brune;\"\";75014;PARIS;75114;\"\";W751085568;R;\"\";2013-07-10 10:33:24.263074\n");
         assertThat(a.getCodeGestionnaire()).isEqualTo("751P00085568");
         assertThat(a.getAncienNumero()).isEqualTo("00085568");
@@ -55,7 +54,7 @@ public class RNAToJsonTest {
 
     @Test
     public void csv_should_have_23_columns() {
-        int columns = new RNAToJson().countColumns();
+        int columns = new RNAIndexer().countColumns();
 
         assertThat(columns).isEqualTo(23);
     }
@@ -65,7 +64,7 @@ public class RNAToJsonTest {
         InputStream source = this.getClass().getResourceAsStream("rna_import_3_lines.csv");
         StringWriter writer = new StringWriter();
 
-        new RNAToJson().convertToJson(writer, source);
+        new RNAIndexer().convertToJson(writer, source);
 
         assertThat(writer.toString()).isEqualTo("" +
                 "{\"index\":{\"_id\":\"751P00085568\"}}\n" +

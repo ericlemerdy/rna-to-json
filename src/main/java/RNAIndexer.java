@@ -18,13 +18,13 @@ import data.Association;
 import data.Id;
 import data.Index;
 
-public class RNAToJson {
+public class RNAIndexer {
     private static final char SEPARATOR_CHAR = ';';
     private static final int BUFFER_SIZE = 10000;
     private CsvMapper csvMapper;
     private CsvSchema csvSchema;
 
-    public RNAToJson() {
+    public RNAIndexer() {
         csvMapper = (CsvMapper) new CsvMapper().disable(CAN_OVERRIDE_ACCESS_MODIFIERS);
         csvSchema = csvMapper
                 .schemaFor(Association.class)
@@ -78,8 +78,8 @@ public class RNAToJson {
 
     public static void main(String[] args) throws URISyntaxException, IOException {
         File destination = File.createTempFile("rna", ".json");
-        InputStream source = RNAToJson.class.getResourceAsStream("rna_import_20170301_.csv");
-        new RNAToJson().convertToJson(new FileWriter(destination), source);
+        InputStream source = RNAIndexer.class.getResourceAsStream("rna_import_20170301_.csv");
+        new RNAIndexer().convertToJson(new FileWriter(destination), source);
         out.printf("%s", destination.getAbsolutePath());
     }
 }
