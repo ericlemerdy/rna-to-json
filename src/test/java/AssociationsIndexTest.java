@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import static com.google.common.primitives.Bytes.toArray;
 import static java.net.InetAddress.getByAddress;
-import static java.nio.file.Files.createTempDirectory;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
