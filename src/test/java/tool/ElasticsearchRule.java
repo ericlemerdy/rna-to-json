@@ -1,3 +1,5 @@
+package tool;
+
 import pl.domzal.junit.docker.rule.DockerRule;
 import pl.domzal.junit.docker.rule.WaitFor;
 

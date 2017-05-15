@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
 import pl.domzal.junit.docker.rule.DockerRule;
+import tool.ElasticsearchRule;
 
 import java.io.IOException;
 
