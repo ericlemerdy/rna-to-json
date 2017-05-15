@@ -25,8 +25,8 @@ public class AssociationsIndex implements AutoCloseable {
     }
 
     public AssociationsIndex(InetAddress inetAddress) throws UnknownHostException {
-        this.client = new PreBuiltTransportClient(EMPTY)
-                .addTransportAddress(new InetSocketTransportAddress(inetAddress, 9300));
+        this(new PreBuiltTransportClient(EMPTY)
+                .addTransportAddress(new InetSocketTransportAddress(inetAddress, 9300)));
     }
 
     @VisibleForTesting
