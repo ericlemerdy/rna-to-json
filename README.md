@@ -44,3 +44,28 @@ $ curl \
     --data-binary @/tmp/rna8887075158028002758.json \
     http://localhost:9200/rna/associations/_bulk
 ```
+
+### Deploy Front-end.
+
+1. Start maven
+
+```bash
+docker run -it --rm --name my-maven-project -v "$PWD":/usr/src/mymaven -w /usr/src/mymaven maven /bin/bash
+```
+
+2. Create `known_host` file
+
+```bash
+mkdir /root/.ssh/
+touch /root/.ssh/known_hosts
+```
+
+3. Deploy with maven
+
+```bash
+mvn wagon:upload
+```
+
+4. Test
+
+Access [http://assoc-io.ddns.net/](http://assoc-io.ddns.net/)
