@@ -1,6 +1,14 @@
 rnatojson
 ---------
 
+### Compile
+
+1. Run maven build
+
+```bash
+$ mvn clean install
+```
+
 ### Run
 
 1. Linux: increase map count.
@@ -29,20 +37,6 @@ $ java -jar target/rna-to-json-1.0-SNAPSHOT.jar AssociationsIndex
 
 ```bash
 $ java -jar target/rna-to-json-1.0-SNAPSHOT.jar RNAIndexer
-```
-
-At the end, it will print the output file.
-
-Ex. `/tmp/rna8887075158028002758.json`
-
-4. Index the file
-
-```bash
-$ curl \
-    -v
-    -X PUT \
-    --data-binary @/tmp/rna8887075158028002758.json \
-    http://localhost:9200/rna/associations/_bulk
 ```
 
 ### Deploy Front-end.
