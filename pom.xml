@@ -110,6 +110,7 @@
                 <configuration>
                     <workingDirectory>src/main/front</workingDirectory>
                     <nodeVersion>v9.0.0</nodeVersion>
+                    <installDirectory>target/</installDirectory>
                 </configuration>
                 <executions>
                     <execution>
