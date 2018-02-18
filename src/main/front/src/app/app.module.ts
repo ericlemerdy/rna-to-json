@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 import { NgModule } from '@angular/core';
-import {
-  MatToolbarModule,
-  MatCardModule
- } from '@angular/material';
 
 import { AppComponent } from './app.component';
 
@@ -13,8 +13,10 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    MatToolbarModule,
-    MatCardModule
+    FlexLayoutModule,
+    MatButtonModule,
+    MatCardModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

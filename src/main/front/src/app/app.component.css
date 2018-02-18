@@ -1,0 +1,7 @@
+#content {
+    max-width: 900px;
+}
+
+#content mat-card {
+    margin: 20px;
+}

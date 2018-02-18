@@ -1,29 +1,51 @@
 <mat-toolbar color="primary">
-  {{ title }}
+  <mat-toolbar-row>
+    <button mat-button>
+      <i class="material-icons">people</i>
+      {{ title }}
+    </button>
+  </mat-toolbar-row>
 </mat-toolbar>
 
 <div>
   {{ subTitle }}
 </div>
 
-<mat-card>
-  <mat-card-title>INDIGO</mat-card-title>
-  <mat-card-subtitle>dvpt et démocratisation de la musique</mat-card-subtitle>
-  <mat-card-content>
-    <div></div>
-    <div>10        BD  Brune</div>
-    <div></div>
-    <div>75014 PARIS</div>
-  </mat-card-content>
-</mat-card>
-
-<mat-card>
-  <mat-card-title>COMITE DE GESTION RUE PINEL</mat-card-title>
-  <mat-card-subtitle>la gestion des locaux et des services nécessaires aux buts des antennes et a l'exercice des activités de ses membres, conformément a la convention qui sera agree par l'association et l'association philosophique</mat-card-subtitle>
-  <mat-card-content>
-    <div></div>
-    <div>9         RUE Pinel</div>
-    <div></div>
-    <div>75013 PARIS</div>
-  </mat-card-content>
-</mat-card>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <div id="content">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>INDIGO</mat-card-title>
+        <mat-card-subtitle>dvpt et démocratisation de la musique</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div></div>
+        <div>10        BD  Brune</div>
+        <div></div>
+        <div>75014 PARIS</div>
+      </mat-card-content>
+      <mat-card-actions>
+        <span class="example-spacer"></span>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+    
+    <mat-card>
+        <mat-card-header>
+        <mat-card-title>COMITE DE GESTION RUE PINEL</mat-card-title>
+        <mat-card-subtitle>la gestion des locaux et des services nécessaires aux buts des antennes et a l'exercice des activités de ses membres, conformément a la convention qui sera agree par l'association et l'association philosophique</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div></div>
+        <div>9         RUE Pinel</div>
+        <div></div>
+        <div>75013 PARIS</div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
