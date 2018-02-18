@@ -1,5 +1,6 @@
 .idea/
 *.iml
+.vscode/
 target/
 src/main/resources/*.csv
 src/main/front/node_modules/
